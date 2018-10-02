@@ -29,7 +29,6 @@ print(element_html);
 try:
     #Read all tables in the response into a list of dataframes
     dataframes = pd.read_html(element_html)
-    print(dataframes)
     
     #close the browser / webdriver
     driver.close()
@@ -43,4 +42,7 @@ except:
     
     #exit program
     sys.exit(0)
-    
+
+#Iterate through the data frames to access each table
+for dataframe in dataframes:
+    print(dataframe)
