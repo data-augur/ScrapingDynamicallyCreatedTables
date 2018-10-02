@@ -25,6 +25,22 @@ element = driver.find_element_by_xpath('//form[1]')
 element_html=element.get_attribute('innerHTML')
 print(element_html);
 
-#close the browser / webdriver
-driver.close()
+#Use try except block to extract the tables from html and to catch the exception gracefully if the table doesnot exist 
+try:
+    #Read all tables in the response into a list of dataframes
+    dataframes = pd.read_html(element_html)
+    print(dataframes)
+    
+    #close the browser / webdriver
+    driver.close()
+    
+#Incase no table is found print "No table found" and exit gracefully
+except:
+    print("No table found")
+    
+    #close the browser / webdriver
+    driver.close()
+    
+    #exit program
+    sys.exit(0)
     
